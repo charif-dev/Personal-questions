@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ficha de preferências íntimas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#E8EBF0;--paper:#FFFFFF;--ink:#1C2230;--muted:#646B7E;--line:#D5DAE3;--soft:#F3F5F8;--fav:#2D5FB4;--gos:#2C8453;--cur:#B7860F;--nao:#A3313A;color-scheme:light dark}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#151922;--paper:#1E2330;--ink:#E7EAF0;--muted:#9AA1B2;--line:#323949;--soft:#262C3A;--fav:#5B8BE0;--gos:#4DB07A;--cur:#D9A73A;--nao:#D0565E}}
+:root[data-theme="dark"]{--bg:#151922;--paper:#1E2330;--ink:#E7EAF0;--muted:#9AA1B2;--line:#323949;--soft:#262C3A;--fav:#5B8BE0;--gos:#4DB07A;--cur:#D9A73A;--nao:#D0565E}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:inherit}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 Figtree,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:780px;margin:0 auto;padding:24px 16px 150px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+h1{font-size:clamp(1.9rem,6vw,2.8rem);line-height:1.05;letter-spacing:-.02em;margin:8px 0 14px;font-weight:700}
+.langsel{flex:none;margin-top:10px}
+.langsel select{font:600 .9rem/1.2 inherit;color:var(--ink);background:var(--paper);border:1.5px solid var(--line);border-radius:8px;padding:7px 10px;cursor:pointer}
+.intro,.note{color:var(--muted);max-width:62ch;margin:0 0 12px}
+.lt{font-size:1.1rem;margin:22px 0 10px}
+.legend{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px}
+.lg{display:flex;gap:10px;align-items:flex-start;background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.lg b{display:block;line-height:1.3}
+.lg span.t{color:var(--muted);font-size:.87rem;line-height:1.35}
+.dot{flex:none;width:30px;height:30px;border-radius:8px;display:grid;place-items:center;font-weight:700;color:#fff}
+.dot.l1{background:var(--fav)}.dot.l2{background:var(--gos)}.dot.l3{background:var(--cur)}.dot.l4{background:var(--nao)}
+.dot.l0{border:1.5px dashed var(--muted)}
+.note{margin-top:14px}
+.user{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:14px 16px;margin:18px 0 6px}
+.user label.nm span{display:block;font-weight:600;margin-bottom:6px}
+.user input[type=text]{width:100%;max-width:360px;font:inherit;color:var(--ink);background:var(--soft);border:1.5px solid var(--line);border-radius:10px;padding:10px 12px}
+.user input:focus-visible,.langsel select:focus-visible{outline:2px solid var(--fav);outline-offset:1px}
+.user label.cs{display:flex;gap:10px;align-items:flex-start;margin-top:12px;color:var(--ink)}
+.user label.cs input{width:20px;height:20px;margin-top:2px;flex:none}
+.prog{color:var(--muted);font-size:.9rem;margin:10px 0 0}
+.stamp{background:var(--paper);border:1px solid var(--line);border-left:5px solid var(--ink);border-radius:10px;padding:12px 14px;margin:6px 0 4px}
+.stamp b{display:block;font-size:1.05rem}
+.stamp span{color:var(--muted);display:block}
+.mailst{margin:8px 0 0;font-weight:600}
+.mailst.failed{color:var(--nao)}.mailst.sent{color:var(--gos)}
+section{background:var(--paper);border:1px solid var(--line);border-radius:14px;margin:18px 0;padding:4px 16px 6px}
+section h2{font-size:1.3rem;letter-spacing:-.01em;margin:14px 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+section h2 small{color:var(--muted);font-weight:500;font-size:.85rem;white-space:nowrap}
+.row{display:flex;flex-wrap:wrap;gap:8px 18px;align-items:center;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line)}
+.lab{flex:1 1 210px;min-width:0}
+.lab .d{display:block;color:var(--muted);font-size:.86rem;line-height:1.35}
+.groups{display:flex;gap:16px;flex-wrap:wrap}
+.grp{display:flex;flex-direction:column;gap:4px}
+.grp small{font-size:.76rem;color:var(--muted);font-weight:600}
+.seg{display:flex;gap:5px}
+.seg button{width:38px;height:38px;border-radius:9px;border:1.5px solid var(--line);background:var(--soft);color:var(--muted);font:600 .95rem/1 inherit;cursor:pointer;padding:0}
+.seg button:focus-visible,.btn:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.seg button.l1[aria-pressed="true"]{background:var(--fav);border-color:var(--fav);color:#fff}
+.seg button.l2[aria-pressed="true"]{background:var(--gos);border-color:var(--gos);color:#fff}
+.seg button.l3[aria-pressed="true"]{background:var(--cur);border-color:var(--cur);color:#fff}
+.seg button.l4[aria-pressed="true"]{background:var(--nao);border-color:var(--nao);color:#fff}
+body.locked .seg button{cursor:default}
+body.locked .seg button[aria-pressed="false"]{opacity:.25}
+.bar{position:fixed;left:0;right:0;bottom:0;background:var(--paper);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));z-index:5}
+.bar .in{max-width:780px;margin:0 auto;display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.btn{font:600 .95rem/1 inherit;border-radius:10px;padding:12px 16px;border:1.5px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.toast{position:fixed;left:50%;bottom:calc(80px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:10px 16px;border-radius:10px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s;max-width:90vw;text-align:center}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion:reduce){.toast{transition:none}}
+@media print{.bar,.langsel,.toast{display:none}body{background:#fff;color:#000}section{break-inside:avoid-page}.wrap{padding-bottom:0}}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script type="application/json" id="preset">null</script>
+<script>
+(function(){
+var MAIL="mouttaki@hotmail.com";
+var ENDPOINT="https://formsubmit.co/ajax/"+MAIL;
+var G=[["Dar","Giving","Donner"],["Receber","Receiving","Recevoir"]];
+var ME=[["Eu","Me","Moi"],["Parceiro","Partner","Partenaire"]];
+var S=[
+{t:["Intimidade","Intimacy","Intimité"],i:[
+["Romance e afeto","Romance / affection","Romance et affection","Gestos de ternura e ligação emocional","Tender gestures and emotional connection","Gestes de tendresse et lien émotionnel"],
+["Abraços","Hugging","Câlins"],
+["Beijos no corpo","Kissing (body)","Baisers sur le corps"],
+["Beijos na boca","Kissing (mouth)","Baisers sur la bouche"],
+["Conchinha","Spooning","Cuillère","Abraçar por trás, deitados","Holding from behind, lying down","Enlacer par derrière, allongés"],
+["Usar os nomes verdadeiros","Using real names","Utiliser les vrais prénoms","Em vez de alcunhas","Instead of nicknames","Plutôt que des surnoms"],
+["Passar a noite juntos","Sleepover","Passer la nuit ensemble"]]},
+{t:["Vestuário","Clothing","Tenues"],c:ME,i:[
+["Sexo vestido","Clothed sex","Sexe habillé"],["Lingerie","Lingerie","Lingerie"],["Meias","Stockings","Bas"],["Saltos altos","Heels","Talons hauts"],["Couro","Leather","Cuir"],["Látex","Latex","Latex"],["Uniforme","Uniform","Uniforme"],["Cosplay","Cosplay","Cosplay"],["Travestismo","Cross-dressing","Travestissement"],["Roupa formal","Formal clothing","Tenue habillée"]]},
+{t:["Configurações","Groupings","Configurations"],i:[
+["Tu e 1 homem","You and 1 man","Toi et 1 homme"],["Tu e 1 mulher","You and 1 woman","Toi et 1 femme"],["Tu, 1 homem e 1 mulher","You, 1 man and 1 woman","Toi, 1 homme et 1 femme"],["Tu e 2 homens","You and 2 men","Toi et 2 hommes"],["Tu e 2 mulheres","You and 2 women","Toi et 2 femmes"],["Orgia","Orgy","Orgie"]]},
+{t:["Geral","General","Général"],c:G,i:[
+["Masturbação com a mão","Handjobs / fingering","Caresses manuelles"],["Felação","Blowjobs","Fellation"],["Garganta funda","Deep throating","Gorge profonde"],["Engolir","Swallowing","Avaler"],["Ejaculação no rosto","Facials","Éjaculation faciale"],["Cunnilingus","Cunnilingus","Cunnilingus"],["Sentar na cara","Face-sitting","Face-sitting"],
+["Edging","Edging","Edging","Levar à beira do orgasmo e parar, várias vezes","Bringing close to orgasm, then stopping, repeatedly","Amener au bord de l'orgasme puis s'arrêter, plusieurs fois"],
+["Provocação","Teasing","Taquinerie"],["Despir / strip","Stripping","Déshabillage / strip"],["Masturbação mútua","Mutual masturbation","Masturbation mutuelle"],["Auto-humilhação","Self-humiliation","Auto-humiliation"]]},
+{t:["Penetração","Penetration","Pénétration"],c:G,i:[
+["Penetração","Penetration","Pénétration"],["Strap-on","Strap-on","Gode-ceinture"],["Sem preservativo","Barebacking","Sans préservatif"],["Estimulação tântrica / yoni","Tantric / yoni stimulation","Stimulation tantrique / yoni"],["Dedos","Fingering","Doigts"],["Inserção de objetos","Object insertion","Insertion d'objets"],["Fisting","Fisting","Fisting"]]},
+{t:["Posições especiais","Special positions","Positions particulières"],c:G,i:[
+["Suspenso / baloiço erótico","Free-hanging / love swing","Suspendu / balançoire érotique"],["Contra a parede","Up against walls","Contre un mur"],["69","69","69"],["Suspensão com corda ou corrente","Rope / chain suspension","Suspension par corde ou chaîne"],
+["Parceiro invisível","Unseen partner","Partenaire invisible","Não se vê quem participa","You can't see who takes part","On ne voit pas qui participe"]]},
+{t:["Anal","Anal","Anal"],c:G,i:[
+["Provocações anais","Anal teasing","Taquineries anales"],["Brinquedos anais / plug","Anal toys / plugs","Jouets anaux / plug"],["Sexo anal, pegging","Anal sex, pegging","Sexe anal, pegging"],["Beijo negro","Rimming","Anulingus"],["Dupla penetração","Double penetration","Double pénétration"],["Fisting anal","Anal fisting","Fisting anal"]]},
+{t:["Restrição","Restraint","Contrainte"],c:ME,i:[
+["Mordaça","Gag","Bâillon","Impede de falar","Prevents speaking","Empêche de parler"],["Coleira","Collar","Collier"],["Trela","Leash","Laisse"],["Bondage com corda","Rope bondage","Bondage à la corde"],
+["Luvas de restrição","Mitts","Moufles de contention","Impedem de agarrar com os dedos","Prevent gripping with the fingers","Empêchent de saisir avec les doigts"],
+["Pulseiras de restrição","Restraint cuffs","Bracelets de contention","Nos pulsos ou tornozelos, para prender","On wrists or ankles, for tying","Aux poignets ou chevilles, pour attacher"],
+["Fixação à parede ou cruz","Wall / cross mounting","Fixation au mur ou à la croix"],
+["Pelourinho","Stocks","Pilori","Estrutura que prende cabeça e braços","Frame holding head and arms","Structure qui maintient tête et bras"],
+["Dispositivo de castidade","Chastity device","Dispositif de chasteté"],["Imobilização total","Full immobilisation","Immobilisation totale"],["Venda nos olhos","Blindfold","Bandeau sur les yeux"],
+["Privação sensorial","Sensory deprivation","Privation sensorielle","Olhos e ouvidos tapados","Eyes and ears covered","Yeux et oreilles couverts"]]},
+{t:["Brinquedos","Toys","Jouets"],c:[["Em mim","On me","Sur moi"],["No outro","On partner","Sur l'autre"]],i:[
+["Dildos","Dildos","Godemichets"],["Plugs","Plugs","Plugs"],["Vibradores","Vibrators","Vibromasseurs"],["Magic wand","Magic wand","Wand de massage"],["Sybian","Sybian","Sybian"],["Máquinas sexuais","Sex machines","Machines sexuelles"]]},
+{t:["Dominação","Domination","Domination"],c:[["Como dominante","As dom","En dominant"],["Como submisso","As sub","En soumis"]],i:[
+["Dominante / submisso","Dominant / submissive","Dominant / soumis"],["Servidão doméstica","Domestic servitude","Servitude domestique"],["Escravidão (jogo de papéis)","Slavery (role-play)","Esclavage (jeu de rôle)"],["Disciplina","Discipline","Discipline"],["Súplica","Begging","Supplication"],["Orgasmo forçado","Forced orgasm","Orgasme forcé"],["Controlo do orgasmo","Orgasm control","Contrôle de l'orgasme"],["Negação do orgasmo","Orgasm denial","Déni d'orgasme"]]},
+{t:["Cenários","Scenarios","Scénarios"],c:[["Ser o centro","Being the centre","Être au centre"],["Participar","Participating","Participer"]],i:[
+["Glory hole","Glory hole","Glory hole"],["Humilhação","Humiliation","Humiliation"],["Exibicionismo","Exhibitionism","Exhibitionnisme"],["Voyeurismo","Voyeurism","Voyeurisme"],["Jogo médico","Medical play","Jeu médical"],["Pet play (leve)","Pet play (soft)","Pet play (doux)"],["Pet play (intenso)","Pet play (hard)","Pet play (intense)"],["Mobília humana","Human furniture","Mobilier humain"],["Leilão / avaliação","Auction / appraisal","Enchères / évaluation"],["Treino de escravo","Slave training","Dressage d'esclave"],["Interrogatório","Interrogation","Interrogatoire"],["Gangbang","Gangbang","Gangbang"],["Rapto encenado","Staged kidnapping","Enlèvement simulé"],
+["Sleep play","Sleep play","Sleep play","Com acordo prévio","With prior agreement","Avec accord préalable"],["Hipnose","Hypnosis","Hypnose"],
+["Freeuse","Free use","Freeuse","Disponibilidade combinada previamente","Availability agreed in advance","Disponibilité convenue à l'avance"],
+["Falso sexo em público","Fake public sex","Faux sexe en public","Simulação do risco de ser visto","Simulated risk of being seen","Simulation du risque d'être vu"],
+["Educação sexual prática","Practical sex ed","Éducation sexuelle pratique"]]},
+{t:["Cenários tabu","Taboo scenarios","Scénarios tabous"],c:[["Participar","Participating","Participer"],["Observar","Observing","Observer"]],i:[
+["Incesto encenado entre adultos","Staged incest between adults","Inceste simulé entre adultes"],["Não consentimento simulado","Simulated non-consent","Non-consentement simulé"],["Necrofilia simulada","Simulated necrophilia","Nécrophilie simulée"],["Simbolismo nazi / de guerra","Nazi / war symbolism","Symbolique nazie / de guerre"],["Traição","Cheating","Infidélité"],["Sexo em público real","Real public sex","Sexe en public réel"]]},
+{t:["Fantasia","Fantasy","Fantastique"],c:[["Eu","Me","Moi"],["Observar","Observing","Observer"]],i:[
+["Futanari","Futanari","Futanari"],["Furry","Furry","Furry"],["Transformação","Transformation","Transformation"],["Tentáculos","Tentacles","Tentacules"],["Monstros / criaturas","Monsters / creatures","Monstres / créatures"],["Extraterrestres","Aliens","Extraterrestres"]]},
+{t:["Fluidos","Fluids","Fluides"],i:[
+["Sangue","Blood","Sang"],["Urofilia","Watersports","Urophilie"],["Scat","Scat","Scat"],["Jogos com esperma","Cum play","Jeux avec le sperme"]]},
+{t:["Toque e estimulação","Touch and stimulation","Toucher et stimulation"],c:[["Quem faz","Giving","Qui fait"],["Quem recebe","Receiving","Qui reçoit"]],i:[
+["Adoração dos genitais","Genital worship","Adoration des parties génitales"],["Adoração das nádegas","Ass worship","Adoration des fesses"],["Jogo com os pés","Foot play","Jeu avec les pieds"],["Cócegas","Tickling","Chatouilles"],["Jogo sensorial","Sensation play","Jeu sensoriel"],["Eletroestimulação","Electrostimulation","Électrostimulation"],["Controlo da respiração","Breath play","Contrôle de la respiration"]]},
+{t:["Dor","Pain","Douleur"],c:G,i:[
+["Dor leve","Light pain","Douleur légère"],["Dor intensa","Heavy pain","Douleur intense"],["Chupões","Hickies","Suçons"],["Molas nos mamilos","Nipple clamps","Pinces à tétons"],["Molas / abraçadeiras","Clothes pins / zip ties","Pinces à linge / colliers de serrage"],["Palmadas no corpo","Body slapping","Claques sur le corps"],["Bofetadas","Face slapping","Gifles"],["Spanking","Spanking","Fessée"],["Vara","Caning","Badine"],["Flagelação","Flogging","Flagellation"],["Espancamento","Beatings","Coups"],["Chicotes","Whips","Fouets"],["Palmatórias","Paddles","Paddles"],["Palmadas nos genitais","Genital slapping","Claques sur les parties génitales"],["Tortura dos genitais","Genital torture","Torture des parties génitales"],["Tortura dos seios","Breast torture","Torture des seins"],["Cera quente","Hot wax","Cire chaude"],["Arranhões","Scratching","Griffures"],["Mordidas","Biting","Morsures"],["Queimaduras","Burning","Brûlures"],["Cortes","Cutting","Coupures"],
+["Sounding","Sounding","Sounding","Inserção na uretra","Insertion into the urethra","Insertion dans l'urètre"],["Nódoas negras (passageiras)","Bruising (short-lasting)","Bleus (passagers)"],["Marcas duradouras","Long-lasting marks","Marques durables"]]}
+];
+var LV=[null,
+{pt:["F","Favorito","Adoro e procuro ativamente."],en:["F","Favourite","I love it and actively seek it."],fr:["F","Favori","J'adore et je le recherche."]},
+{pt:["G","Gosto","Aprecio quando acontece."],en:["L","Like","I enjoy it when it happens."],fr:["A","J'aime","J'apprécie quand ça arrive."]},
+{pt:["C","Curioso","Pouco ou nunca experimentado. Disposto a tentar com calma."],en:["C","Curious","Little or no experience. Willing to try gently."],fr:["C","Curieux","Peu ou jamais essayé. Prêt à tester en douceur."]},
+{pt:["N","Não","É um limite. Não quero."],en:["N","No","It's a limit. I don't want it."],fr:["N","Non","C'est une limite. Je ne veux pas."]}];
+var T={
+pt:{title:"Ficha de preferências íntimas",intro:"Para cada prática, escolhe um nível. Toca outra vez no mesmo nível para o retirar. O que ficar sem marca conta como sem resposta.",legend:"Legenda",none:"Sem resposta",noneD:"Nenhum nível escolhido.",cols:"Nas secções com duas colunas, como Dar e Receber, cada coluna tem a sua própria resposta.",name:"Nome ou pseudónimo",nameReq:"Indica um nome antes de guardar.",consent:"Aceito que o meu nome e as minhas respostas sejam enviados para {m} ao guardar.",consentReq:"Para guardar, é preciso aceitar o envio.",prog:"{a} de {t} respostas",sec:"{a}/{t}",clear:"Limpar tudo",clearQ:"Apagar todas as respostas?",save:"Guardar e bloquear",saveQ:"Depois de guardar, as respostas ficam bloqueadas e são enviadas para {m}. Continuar?",locked:"Ficha bloqueada em {d}",by:"Respostas de {n}",copy:"Copiar ligação",copied:"Ligação copiada",dl:"Descarregar cópia",print:"Imprimir",fresh:"Nova ficha em branco",lang:"Idioma",sending:"A enviar…",sent:"Respostas enviadas para {m}.",failed:"O envio falhou. Verifica a ligação à internet e tenta de novo.",resend:"Reenviar",subject:"Ficha de preferências: {n}"},
+en:{title:"Intimate preferences sheet",intro:"For each practice, pick a level. Tap the same level again to remove it. Anything left unmarked counts as no answer.",legend:"Legend",none:"No answer",noneD:"No level chosen.",cols:"In sections with two columns, such as Giving and Receiving, each column has its own answer.",name:"Name or nickname",nameReq:"Enter a name before saving.",consent:"I agree that my name and answers are sent to {m} when I save.",consentReq:"To save, you need to accept the sending.",prog:"{a} of {t} answered",sec:"{a}/{t}",clear:"Clear all",clearQ:"Delete all answers?",save:"Save and lock",saveQ:"Once saved, your answers are locked and sent to {m}. Continue?",locked:"Sheet locked on {d}",by:"Answers from {n}",copy:"Copy link",copied:"Link copied",dl:"Download a copy",print:"Print",fresh:"New blank sheet",lang:"Language",sending:"Sending…",sent:"Answers sent to {m}.",failed:"Sending failed. Check your internet connection and try again.",resend:"Resend",subject:"Preferences sheet: {n}"},
+fr:{title:"Fiche de préférences intimes",intro:"Pour chaque pratique, choisis un niveau. Touche à nouveau le même niveau pour le retirer. Ce qui reste sans marque compte comme sans réponse.",legend:"Légende",none:"Sans réponse",noneD:"Aucun niveau choisi.",cols:"Dans les sections à deux colonnes, comme Donner et Recevoir, chaque colonne a sa propre réponse.",name:"Prénom ou pseudo",nameReq:"Indique un nom avant d'enregistrer.",consent:"J'accepte que mon nom et mes réponses soient envoyés à {m} à l'enregistrement.",consentReq:"Pour enregistrer, il faut accepter l'envoi.",prog:"{a} réponses sur {t}",sec:"{a}/{t}",clear:"Tout effacer",clearQ:"Effacer toutes les réponses ?",save:"Enregistrer et verrouiller",saveQ:"Une fois enregistrées, les réponses sont verrouillées et envoyées à {m}. Continuer ?",locked:"Fiche verrouillée le {d}",by:"Réponses de {n}",copy:"Copier le lien",copied:"Lien copié",dl:"Télécharger une copie",print:"Imprimer",fresh:"Nouvelle fiche vierge",lang:"Langue",sending:"Envoi en cours…",sent:"Réponses envoyées à {m}.",failed:"L'envoi a échoué. Vérifie la connexion internet et réessaie.",resend:"Renvoyer",subject:"Fiche de préférences : {n}"}};
+var LANGS=[["pt","Português (PT)"],["en","English"],["fr","Français"]];
+var IDX={pt:0,en:1,fr:2};
+var ALPH="abcdefghijklmnopqrstuvwxy",DRAFT="ficha-preferencias-rascunho";
+var lang="pt",ans={},name="",consent=false,lockDate=null,preset=null,mail=null,mailMsg="";
+var app=document.getElementById("app");
+var KEYS=[];
+S.forEach(function(s,si){s.i.forEach(function(it,ii){var n=s.c?s.c.length:1;for(var c=0;c<n;c++)KEYS.push(si+"-"+ii+"-"+c)})});
+function L(a){return a[IDX[lang]]}
+function lab(it){return it[IDX[lang]]}
+function desc(it){return it[3+IDX[lang]]}
+function t(k,r){var s=T[lang][k];r=r||{};r.m=r.m||MAIL;for(var p in r)s=s.replace("{"+p+"}",r[p]);return s}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function today(){var d=new Date();return String(d.getDate()).padStart(2,"0")+"-"+String(d.getMonth()+1).padStart(2,"0")+"-"+d.getFullYear()}
+function enc(){var v=KEYS.map(function(k){return ans[k]||0});if(v.length%2)v.push(0);var o="";for(var i=0;i<v.length;i+=2)o+=ALPH[v[i]*5+v[i+1]];return o}
+function dec(s){var v=[];for(var i=0;i<s.length;i++){var x=ALPH.indexOf(s[i]);if(x<0)return false;v.push(Math.floor(x/5),x%5)}ans={};KEYS.forEach(function(k,i){if(v[i])ans[k]=v[i]});return true}
+function okLang(l){return l==="pt"||l==="en"||l==="fr"}
+function applyState(p){if(!dec(p.s||""))return false;lockDate=p.d||today();name=p.n||"";if(okLang(p.l))lang=p.l;return true}
+function load(){
+try{var p=JSON.parse(document.getElementById("preset").textContent);if(p&&p.s&&applyState(p)){preset=p;return}}catch(e){}
+var h=new URLSearchParams(location.hash.slice(1));
+if(h.get("s")&&applyState({s:h.get("s"),d:h.get("d"),n:h.get("n"),l:h.get("l")}))return;
+try{var d=JSON.parse(localStorage.getItem(DRAFT)||"null");if(d){ans=d.a||{};name=d.n||"";if(okLang(d.l))lang=d.l}}catch(e){}
+}
+function saveDraft(){if(lockDate)return;try{localStorage.setItem(DRAFT,JSON.stringify({a:ans,n:name,l:lang}))}catch(e){}}
+function setHash(){var p=new URLSearchParams();p.set("s",enc());p.set("d",lockDate);if(name)p.set("n",name);p.set("l",lang);try{history.replaceState(null,"","#"+p.toString())}catch(e){location.hash=p.toString()}}
+function count(prefix){var a=0,n=0;KEYS.forEach(function(k){if(prefix===null||k.indexOf(prefix)===0){n++;if(ans[k])a++}});return[a,n]}
+function summary(){
+var out=[];
+S.forEach(function(s,si){
+var lines=[];
+s.i.forEach(function(it,ii){
+var n=s.c?s.c.length:1,parts=[];
+for(var c=0;c<n;c++){var v=ans[si+"-"+ii+"-"+c];if(v)parts.push((s.c?L(s.c[c])+": ":"")+LV[v][lang][1])}
+if(parts.length)lines.push("- "+lab(it)+" | "+parts.join(" / "))});
+if(lines.length)out.push(L(s.t).toUpperCase()+"\n"+lines.join("\n"))});
+return out.join("\n\n")||t("none");
+}
+function mailHTML(){
+if(!mail)return"";
+var cls=mail==="sent"?"sent":mail==="failed"?"failed":"";
+var txt=mail==="sent"?t("sent"):mail==="failed"?t("failed")+(mailMsg?" ("+mailMsg+")":""):t("sending");
+return'<p class="mailst '+cls+'" id="mailst">'+esc(txt)+'</p>';
+}
+function send(){
+mail="sending";mailMsg="";render();
+fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
+body:JSON.stringify({_subject:t("subject",{n:name}),_template:"box",_captcha:"false",Name:name,Date:lockDate,Language:lang,Link:location.href,Answers:summary()})})
+.then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,j:j}})})
+.then(function(res){if(res.ok&&res.j&&String(res.j.success)==="true"){mail="sent"}else{mail="failed";mailMsg=(res.j&&res.j.message)||""}})
+.catch(function(){mail="failed"})
+.then(render);
+}
+function render(){
+document.documentElement.lang=lang==="pt"?"pt-PT":lang;
+document.title=t("title");
+document.body.classList.toggle("locked",!!lockDate);
+var h='<div class="wrap"><div class="top"><h1>'+t("title")+'</h1><label class="langsel"><span class="sr" style="position:absolute;left:-9999px">'+t("lang")+'</span><select id="lang" aria-label="'+t("lang")+'">';
+LANGS.forEach(function(l){h+='<option value="'+l[0]+'"'+(l[0]===lang?" selected":"")+'>'+l[1]+'</option>'});
+h+='</select></label></div>';
+if(lockDate)h+='<div class="stamp"><b>'+esc(t("locked",{d:lockDate}))+'</b>'+(name?'<span>'+esc(t("by",{n:name}))+'</span>':'')+mailHTML()+'</div>';
+else h+='<p class="intro">'+t("intro")+'</p>';
+h+='<h2 class="lt">'+t("legend")+'</h2><div class="legend">';
+[1,2,3,4].forEach(function(v){var l=LV[v][lang];h+='<div class="lg"><span class="dot l'+v+'" aria-hidden="true">'+l[0]+'</span><div><b>'+esc(l[1])+'</b><span class="t">'+esc(l[2])+'</span></div></div>'});
+h+='<div class="lg"><span class="dot l0" aria-hidden="true"></span><div><b>'+t("none")+'</b><span class="t">'+t("noneD")+'</span></div></div></div>';
+h+='<p class="note">'+t("cols")+'</p>';
+if(!lockDate)h+='<div class="user"><label class="nm"><span>'+t("name")+'</span><input type="text" id="nm" maxlength="40" autocomplete="off" required value="'+esc(name)+'"></label>'+
+'<label class="cs"><input type="checkbox" id="cs"'+(consent?" checked":"")+'><span>'+esc(t("consent"))+'</span></label></div>';
+h+='<p class="prog" id="prog"></p>';
+S.forEach(function(s,si){
+var n=s.c?s.c.length:1;
+h+='<section><h2>'+esc(L(s.t))+'<small data-sec="'+si+'"></small></h2>';
+s.i.forEach(function(it,ii){
+var lb=lab(it),d=desc(it);
+h+='<div class="row"><div class="lab">'+esc(lb)+(d?'<span class="d">'+esc(d)+'</span>':'')+'</div><div class="groups">';
+for(var c=0;c<n;c++){
+var k=si+"-"+ii+"-"+c,cn=s.c?L(s.c[c]):"";
+h+='<div class="grp">'+(s.c?'<small>'+esc(cn)+'</small>':'')+'<div class="seg">';
+[1,2,3,4].forEach(function(v){var l=LV[v][lang];
+h+='<button type="button" class="l'+v+'" data-k="'+k+'" data-v="'+v+'" aria-pressed="'+(ans[k]===v)+'" aria-label="'+esc(lb+(cn?", "+cn:"")+": "+l[1])+'"'+(lockDate?' disabled':'')+'>'+l[0]+'</button>'});
+h+='</div></div>'}
+h+='</div></div>'});
+h+='</section>'});
+h+='</div><div class="bar"><div class="in">';
+if(!lockDate)h+='<button type="button" class="btn" data-act="clear">'+t("clear")+'</button><button type="button" class="btn primary" data-act="save">'+t("save")+'</button>';
+else{
+if(mail==="failed")h+='<button type="button" class="btn primary" data-act="resend">'+t("resend")+'</button>';
+if(!preset)h+='<button type="button" class="btn" data-act="copy">'+t("copy")+'</button>';
+h+='<button type="button" class="btn" data-act="dl">'+t("dl")+'</button><button type="button" class="btn" data-act="print">'+t("print")+'</button>';
+if(!preset)h+='<button type="button" class="btn" data-act="fresh">'+t("fresh")+'</button>'}
+h+='</div></div>';
+app.innerHTML=h;
+updateProg();
+}
+function updateProg(){
+var c=count(null);var el=document.getElementById("prog");if(el)el.textContent=t("prog",{a:c[0],t:c[1]});
+Array.prototype.forEach.call(document.querySelectorAll("[data-sec]"),function(e){var r=count(e.getAttribute("data-sec")+"-");e.textContent=t("sec",{a:r[0],t:r[1]})});
+}
+function toast(msg){var el=document.getElementById("toast");el.textContent=msg;el.classList.add("on");setTimeout(function(){el.classList.remove("on")},2200)}
+function download(){
+var pre=document.getElementById("preset");
+pre.textContent=JSON.stringify({s:enc(),d:lockDate,n:name,l:lang}).replace(/</g,"\\u003c");
+var keep=mail;mail=null;render();
+var html="<!doctype html>\n"+document.documentElement.outerHTML;
+pre.textContent="null";mail=keep;render();
+var blob=new Blob([html],{type:"text/html;charset=utf-8"});
+var a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="ficha-preferencias-"+lockDate+".html";
+document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);
+}
+app.addEventListener("click",function(e){
+var b=e.target.closest("button");if(!b)return;
+if(b.hasAttribute("data-k")){
+if(lockDate)return;
+var k=b.getAttribute("data-k"),v=+b.getAttribute("data-v");
+if(ans[k]===v)delete ans[k];else ans[k]=v;
+Array.prototype.forEach.call(document.querySelectorAll('button[data-k="'+k+'"]'),function(o){o.setAttribute("aria-pressed",String(ans[k]===+o.getAttribute("data-v")))});
+saveDraft();updateProg();return}
+var act=b.getAttribute("data-act");
+if(act==="clear"){if(confirm(t("clearQ"))){ans={};name="";consent=false;saveDraft();render()}}
+else if(act==="save"){
+name=name.trim();
+if(!name){toast(t("nameReq"));var n=document.getElementById("nm");if(n){n.focus();n.scrollIntoView({block:"center"})}return}
+if(!consent){toast(t("consentReq"));var c=document.getElementById("cs");if(c){c.focus();c.scrollIntoView({block:"center"})}return}
+if(confirm(t("saveQ"))){lockDate=today();setHash();try{localStorage.removeItem(DRAFT)}catch(err){}window.scrollTo(0,0);send()}}
+else if(act==="resend")send();
+else if(act==="copy"){var u=location.href;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){toast(t("copied"))},function(){prompt(t("copy"),u)})}else prompt(t("copy"),u)}
+else if(act==="dl")download();
+else if(act==="print")window.print();
+else if(act==="fresh"){location.href=location.href.split("#")[0]}
+});
+app.addEventListener("change",function(e){
+if(e.target.id==="lang"){lang=e.target.value;if(lockDate&&!preset)setHash();saveDraft();render()}
+else if(e.target.id==="cs"){consent=e.target.checked}
+});
+app.addEventListener("input",function(e){if(e.target.id==="nm"){name=e.target.value;saveDraft()}});
+load();render();
+})();
+</script>
+</body>
+</html>
