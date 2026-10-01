@@ -186,7 +186,7 @@ var cls=mail==="sent"?"sent":mail==="failed"?"failed":"";
 var txt=mail==="sent"?t("sent"):mail==="failed"?t("failed")+(mailMsg?" ("+mailMsg+")":""):t("sending");
 return'<p class="mailst '+cls+'" id="mailst">'+esc(txt)+'</p>';
 }
-function send(){
+function withTimeout(p,ms){return new Promise(function(res,rej){var id=setTimeout(function(){rej(new Error("timeout"))},ms);p.then(function(v){clearTimeout(id);res(v)},function(e){clearTimeout(id);rej(e)})})}function send(){
 mail="sending";mailMsg="";render();
 var subj=t("subject",{n:name}),req;
 if(W3KEY){
@@ -194,7 +194,7 @@ req=fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Ty
 }else{
 req=fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({_subject:subj,_template:"box",_captcha:"false",Name:name,Date:lockDate,Language:lang,Link:location.href,Answers:summary()})});
 }
-req.then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,st:r.status,j:j}})})
+req=withTimeout(req,15000);req.then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,st:r.status,j:j}})})
 .then(function(res){if(res.ok&&res.j&&String(res.j.success)==="true"){mail="sent"}else{mail="failed";mailMsg=(res.j&&res.j.message)||("HTTP "+res.st)}})
 .catch(function(e){mail="failed";mailMsg=String(e&&e.message||e)})
 .then(render);
@@ -233,7 +233,7 @@ h+='</div><div class="bar"><div class="in">';
 if(!lockDate)h+='<button type="button" class="btn" data-act="clear">'+t("clear")+'</button><button type="button" class="btn primary" data-act="save">'+t("save")+'</button>';
 else{
 if(mail==="failed")h+='<button type="button" class="btn primary" data-act="resend">'+t("resend")+'</button>';
-if(mail==="failed")h+='<button type="button" class="btn" data-act="mailapp">'+t("mailapp")+'</button>';
+if(!preset&&mail!=="sent")h+='<button type="button" class="btn" data-act="mailapp">'+t("mailapp")+'</button>';
 if(!preset)h+='<button type="button" class="btn" data-act="copy">'+t("copy")+'</button>';
 h+='<button type="button" class="btn" data-act="dl">'+t("dl")+'</button><button type="button" class="btn" data-act="print">'+t("print")+'</button>';
 if(!preset)h+='<button type="button" class="btn" data-act="fresh">'+t("fresh")+'</button>'}
