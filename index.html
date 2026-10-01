@@ -76,6 +76,7 @@ body.locked .seg button[aria-pressed="false"]{opacity:.25}
 <script>
 (function(){
 var MAIL="mouttaki@hotmail.com";
+var W3KEY="";
 var ENDPOINT="https://formsubmit.co/ajax/"+MAIL;
 var G=[["Dar","Giving","Donner"],["Receber","Receiving","Recevoir"]];
 var ME=[["Eu","Me","Moi"],["Parceiro","Partner","Partenaire"]];
@@ -139,9 +140,9 @@ var LV=[null,
 {pt:["C","Curioso","Pouco ou nunca experimentado. Disposto a tentar com calma."],en:["C","Curious","Little or no experience. Willing to try gently."],fr:["C","Curieux","Peu ou jamais essayé. Prêt à tester en douceur."]},
 {pt:["N","Não","É um limite. Não quero."],en:["N","No","It's a limit. I don't want it."],fr:["N","Non","C'est une limite. Je ne veux pas."]}];
 var T={
-pt:{title:"Ficha de preferências íntimas",intro:"Para cada prática, escolhe um nível. Toca outra vez no mesmo nível para o retirar. O que ficar sem marca conta como sem resposta.",legend:"Legenda",none:"Sem resposta",noneD:"Nenhum nível escolhido.",cols:"Nas secções com duas colunas, como Dar e Receber, cada coluna tem a sua própria resposta.",name:"Nome ou pseudónimo",nameReq:"Indica um nome antes de guardar.",consent:"Aceito que o meu nome e as minhas respostas sejam enviados para {m} ao guardar.",consentReq:"Para guardar, é preciso aceitar o envio.",prog:"{a} de {t} respostas",sec:"{a}/{t}",clear:"Limpar tudo",clearQ:"Apagar todas as respostas?",save:"Guardar e bloquear",saveQ:"Depois de guardar, as respostas ficam bloqueadas e são enviadas para {m}. Continuar?",locked:"Ficha bloqueada em {d}",by:"Respostas de {n}",copy:"Copiar ligação",copied:"Ligação copiada",dl:"Descarregar cópia",print:"Imprimir",fresh:"Nova ficha em branco",lang:"Idioma",sending:"A enviar…",sent:"Respostas enviadas para {m}.",failed:"O envio falhou. Verifica a ligação à internet e tenta de novo.",resend:"Reenviar",subject:"Ficha de preferências: {n}"},
-en:{title:"Intimate preferences sheet",intro:"For each practice, pick a level. Tap the same level again to remove it. Anything left unmarked counts as no answer.",legend:"Legend",none:"No answer",noneD:"No level chosen.",cols:"In sections with two columns, such as Giving and Receiving, each column has its own answer.",name:"Name or nickname",nameReq:"Enter a name before saving.",consent:"I agree that my name and answers are sent to {m} when I save.",consentReq:"To save, you need to accept the sending.",prog:"{a} of {t} answered",sec:"{a}/{t}",clear:"Clear all",clearQ:"Delete all answers?",save:"Save and lock",saveQ:"Once saved, your answers are locked and sent to {m}. Continue?",locked:"Sheet locked on {d}",by:"Answers from {n}",copy:"Copy link",copied:"Link copied",dl:"Download a copy",print:"Print",fresh:"New blank sheet",lang:"Language",sending:"Sending…",sent:"Answers sent to {m}.",failed:"Sending failed. Check your internet connection and try again.",resend:"Resend",subject:"Preferences sheet: {n}"},
-fr:{title:"Fiche de préférences intimes",intro:"Pour chaque pratique, choisis un niveau. Touche à nouveau le même niveau pour le retirer. Ce qui reste sans marque compte comme sans réponse.",legend:"Légende",none:"Sans réponse",noneD:"Aucun niveau choisi.",cols:"Dans les sections à deux colonnes, comme Donner et Recevoir, chaque colonne a sa propre réponse.",name:"Prénom ou pseudo",nameReq:"Indique un nom avant d'enregistrer.",consent:"J'accepte que mon nom et mes réponses soient envoyés à {m} à l'enregistrement.",consentReq:"Pour enregistrer, il faut accepter l'envoi.",prog:"{a} réponses sur {t}",sec:"{a}/{t}",clear:"Tout effacer",clearQ:"Effacer toutes les réponses ?",save:"Enregistrer et verrouiller",saveQ:"Une fois enregistrées, les réponses sont verrouillées et envoyées à {m}. Continuer ?",locked:"Fiche verrouillée le {d}",by:"Réponses de {n}",copy:"Copier le lien",copied:"Lien copié",dl:"Télécharger une copie",print:"Imprimer",fresh:"Nouvelle fiche vierge",lang:"Langue",sending:"Envoi en cours…",sent:"Réponses envoyées à {m}.",failed:"L'envoi a échoué. Vérifie la connexion internet et réessaie.",resend:"Renvoyer",subject:"Fiche de préférences : {n}"}};
+pt:{title:"Ficha de preferências íntimas",intro:"Para cada prática, escolhe um nível. Toca outra vez no mesmo nível para o retirar. O que ficar sem marca conta como sem resposta.",legend:"Legenda",none:"Sem resposta",noneD:"Nenhum nível escolhido.",cols:"Nas secções com duas colunas, como Dar e Receber, cada coluna tem a sua própria resposta.",name:"Nome ou pseudónimo",nameReq:"Indica um nome antes de guardar.",consent:"Aceito que o meu nome e as minhas respostas sejam enviados para {m} ao guardar.",consentReq:"Para guardar, é preciso aceitar o envio.",prog:"{a} de {t} respostas",sec:"{a}/{t}",clear:"Limpar tudo",clearQ:"Apagar todas as respostas?",save:"Guardar e bloquear",saveQ:"Depois de guardar, as respostas ficam bloqueadas e são enviadas para {m}. Continuar?",locked:"Ficha bloqueada em {d}",by:"Respostas de {n}",copy:"Copiar ligação",copied:"Ligação copiada",dl:"Descarregar cópia",print:"Imprimir",fresh:"Nova ficha em branco",lang:"Idioma",sending:"A enviar…",sent:"Respostas enviadas para {m}.",failed:"O envio falhou. Verifica a ligação à internet e tenta de novo.",resend:"Reenviar",mailapp:"Enviar pela app de email",subject:"Ficha de preferências: {n}"},
+en:{title:"Intimate preferences sheet",intro:"For each practice, pick a level. Tap the same level again to remove it. Anything left unmarked counts as no answer.",legend:"Legend",none:"No answer",noneD:"No level chosen.",cols:"In sections with two columns, such as Giving and Receiving, each column has its own answer.",name:"Name or nickname",nameReq:"Enter a name before saving.",consent:"I agree that my name and answers are sent to {m} when I save.",consentReq:"To save, you need to accept the sending.",prog:"{a} of {t} answered",sec:"{a}/{t}",clear:"Clear all",clearQ:"Delete all answers?",save:"Save and lock",saveQ:"Once saved, your answers are locked and sent to {m}. Continue?",locked:"Sheet locked on {d}",by:"Answers from {n}",copy:"Copy link",copied:"Link copied",dl:"Download a copy",print:"Print",fresh:"New blank sheet",lang:"Language",sending:"Sending…",sent:"Answers sent to {m}.",failed:"Sending failed. Check your internet connection and try again.",resend:"Resend",mailapp:"Send with my mail app",subject:"Preferences sheet: {n}"},
+fr:{title:"Fiche de préférences intimes",intro:"Pour chaque pratique, choisis un niveau. Touche à nouveau le même niveau pour le retirer. Ce qui reste sans marque compte comme sans réponse.",legend:"Légende",none:"Sans réponse",noneD:"Aucun niveau choisi.",cols:"Dans les sections à deux colonnes, comme Donner et Recevoir, chaque colonne a sa propre réponse.",name:"Prénom ou pseudo",nameReq:"Indique un nom avant d'enregistrer.",consent:"J'accepte que mon nom et mes réponses soient envoyés à {m} à l'enregistrement.",consentReq:"Pour enregistrer, il faut accepter l'envoi.",prog:"{a} réponses sur {t}",sec:"{a}/{t}",clear:"Tout effacer",clearQ:"Effacer toutes les réponses ?",save:"Enregistrer et verrouiller",saveQ:"Une fois enregistrées, les réponses sont verrouillées et envoyées à {m}. Continuer ?",locked:"Fiche verrouillée le {d}",by:"Réponses de {n}",copy:"Copier le lien",copied:"Lien copié",dl:"Télécharger une copie",print:"Imprimer",fresh:"Nouvelle fiche vierge",lang:"Langue",sending:"Envoi en cours…",sent:"Réponses envoyées à {m}.",failed:"L'envoi a échoué. Vérifie la connexion internet et réessaie.",resend:"Renvoyer",mailapp:"Envoyer par mon appli mail",subject:"Fiche de préférences : {n}"}};
 var LANGS=[["pt","Português (PT)"],["en","English"],["fr","Français"]];
 var IDX={pt:0,en:1,fr:2};
 var ALPH="abcdefghijklmnopqrstuvwxy",DRAFT="ficha-preferencias-rascunho";
@@ -187,11 +188,15 @@ return'<p class="mailst '+cls+'" id="mailst">'+esc(txt)+'</p>';
 }
 function send(){
 mail="sending";mailMsg="";render();
-fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},
-body:JSON.stringify({_subject:t("subject",{n:name}),_template:"box",_captcha:"false",Name:name,Date:lockDate,Language:lang,Link:location.href,Answers:summary()})})
-.then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,j:j}})})
-.then(function(res){if(res.ok&&res.j&&String(res.j.success)==="true"){mail="sent"}else{mail="failed";mailMsg=(res.j&&res.j.message)||""}})
-.catch(function(){mail="failed"})
+var subj=t("subject",{n:name}),req;
+if(W3KEY){
+req=fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({access_key:W3KEY,subject:subj,from_name:name,Name:name,Date:lockDate,Language:lang,Link:location.href,message:summary()})});
+}else{
+req=fetch(ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({_subject:subj,_template:"box",_captcha:"false",Name:name,Date:lockDate,Language:lang,Link:location.href,Answers:summary()})});
+}
+req.then(function(r){return r.json().catch(function(){return{}}).then(function(j){return{ok:r.ok,st:r.status,j:j}})})
+.then(function(res){if(res.ok&&res.j&&String(res.j.success)==="true"){mail="sent"}else{mail="failed";mailMsg=(res.j&&res.j.message)||("HTTP "+res.st)}})
+.catch(function(e){mail="failed";mailMsg=String(e&&e.message||e)})
 .then(render);
 }
 function render(){
@@ -228,6 +233,7 @@ h+='</div><div class="bar"><div class="in">';
 if(!lockDate)h+='<button type="button" class="btn" data-act="clear">'+t("clear")+'</button><button type="button" class="btn primary" data-act="save">'+t("save")+'</button>';
 else{
 if(mail==="failed")h+='<button type="button" class="btn primary" data-act="resend">'+t("resend")+'</button>';
+if(mail==="failed")h+='<button type="button" class="btn" data-act="mailapp">'+t("mailapp")+'</button>';
 if(!preset)h+='<button type="button" class="btn" data-act="copy">'+t("copy")+'</button>';
 h+='<button type="button" class="btn" data-act="dl">'+t("dl")+'</button><button type="button" class="btn" data-act="print">'+t("print")+'</button>';
 if(!preset)h+='<button type="button" class="btn" data-act="fresh">'+t("fresh")+'</button>'}
@@ -265,6 +271,7 @@ name=name.trim();
 if(!name){toast(t("nameReq"));var n=document.getElementById("nm");if(n){n.focus();n.scrollIntoView({block:"center"})}return}
 if(!consent){toast(t("consentReq"));var c=document.getElementById("cs");if(c){c.focus();c.scrollIntoView({block:"center"})}return}
 if(confirm(t("saveQ"))){lockDate=today();setHash();try{localStorage.removeItem(DRAFT)}catch(err){}window.scrollTo(0,0);send()}}
+else if(act==="mailapp"){var mb=name+"\n"+lockDate+"\n\n"+location.href;location.href="mailto:"+MAIL+"?subject="+encodeURIComponent(t("subject",{n:name}))+"&body="+encodeURIComponent(mb)}
 else if(act==="resend")send();
 else if(act==="copy"){var u=location.href;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(u).then(function(){toast(t("copied"))},function(){prompt(t("copy"),u)})}else prompt(t("copy"),u)}
 else if(act==="dl")download();
